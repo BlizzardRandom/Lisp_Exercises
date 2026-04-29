@@ -43,24 +43,25 @@ erates a recursive process.
 
 ; recursive
 (define (cont-frac n d k)
-  (define (iter k a)
-    (if (< a k)
-      ( / (n a) (+ (d a) (iter k (+ a 1))))
-      0)
+  (define (iter a)
+    (if (= a k)
+      0
+      ( / (n a) (+ (d a) (iter (+ a 1))))
+      )
     )
      
-  (iter k 0)
+  (iter 1)
 )
 
 ;iterative
 (define (cont-frac-iter n d k)
-  (define (iter k a acc)
-    (if (< a k)
-      (iter k (+ a 1) (/ (n a) (+ (d a) acc)))
+  (define (iter a acc)
+    (if (zero? a)
+      (iter (- a 1) (/ (n a) (+ (d a) acc)))
       acc)
     )
      
-  (iter k 0 0)
+  (iter k 0)
 )
 
 
